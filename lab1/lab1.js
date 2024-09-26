@@ -1,31 +1,25 @@
-let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?"); 
+let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?");
 console.log("Вы посмотрели ", numberOfFilms, " фильмов.");
 
 const personalMovieDB = {
-    count : numberOfFilms, 
-    movies : {
-
-    },
+    count: numberOfFilms,
+    movies: {},
 };
 
-do{
+do {
     let lastSeenFilm = prompt("Какой фильм посмотрели последним?");
-    let lastFilmRatingt = prompt("На сколько оцените его?");
-    if(lastSeenFilm === null){ 
-        alert("Wrong enter!");
-        continue;
+    
+    // Проверка корректности названия фильма
+    if (lastSeenFilm === null  lastSeenFilm.trim() === ""  lastSeenFilm.length > 50) {
+        alert("Неверный ввод! Пожалуйста, введите корректное название фильма (не более 50 символов).");
+        continue; // Вернуться к запросу
     }
-     }
-    if(lastSeenFilm === ""){ 
-        alert("Wrong enter!");
-        continue;
-    }
-    if(lastSeenFilm.length>50){ 
-        alert("Wrong enter!");
-        continue;
-   
-    personalMovieDB.movies[lastSeenFilm] = lastFilmRatingt;
-    break; 
-}while(true);
 
-console.log(personalMovieDB)
+    let lastFilmRatingt = prompt("На сколько оцените его?");
+    
+    // Здесь можно добавить проверку для рейтинга, если это необходимо
+    personalMovieDB.movies[lastSeenFilm] = lastFilmRatingt;
+    break; // Выйти из цикла после корректного ввода
+} while (true);
+
+console.log(personalMovieDB);
