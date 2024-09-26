@@ -11,15 +11,15 @@ const personalMovieDB = {
 do{
     let lastSeenFilm = prompt("Какой фильм посмотрели последним?");
     let lastFilmRatingt = prompt("На сколько оцените его?");
-    if(lastSeenFilm == null){ 
+    if(lastSeenFilm == null || lastSeenFilm.length>50 || lastSeenFilm == ""){ 
         alert("Wrong enter!");
         continue;
     }
-     if( lastSeenFilm.length>50"){ 
+    if(lastSeenFilm.length>50){ 
         alert("Wrong enter!");
         continue;
     }
-     if(lastSeenFilm.length>50){ 
+    if(lastSeenFilm == ""){ 
         alert("Wrong enter!");
         continue;
     }
