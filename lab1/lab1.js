@@ -6,7 +6,7 @@ let personalMovieDB = {
     movies: {}
 };
 
-for(let i = 0; i < 2; i++)
+for(let i = 0; i < 1; i++)
 {
     let lastMovie = prompt('Один из последних просмотренных фильмов?');
     let movieRating = prompt('На сколько оцените его?');
