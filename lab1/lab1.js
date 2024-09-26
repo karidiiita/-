@@ -1,11 +1,9 @@
-let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?"); 
-console.log("Вы посмотрели ", numberOfFilms, " фильмов.");
 
-const personalMovieDB = {
-    count : numberOfFilms, 
-    movies : {
+let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?');
 
-    },
+let personalMovieDB = {
+    count: numberOfFilms,
+    movies: {}
 };
 
 for(let i = 0; i < 2; i++)
@@ -13,8 +11,6 @@ for(let i = 0; i < 2; i++)
     let lastMovie = prompt('Один из последних просмотренных фильмов?');
     let movieRating = prompt('На сколько оцените его?');
 
-
-  
   if(lastMovie != null && movieRating != null 
     && lastMovie != '' && movieRating != '' 
     && lastMovie.length < 50 )
@@ -26,6 +22,4 @@ for(let i = 0; i < 2; i++)
         i--
     }
 }
-
-
-console.log(personalMovieDB)
+console.log(personalMovieDB);
