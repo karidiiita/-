@@ -4,7 +4,6 @@ console.log("Вы посмотрели ", numberOfFilms, " фильмов.");
 const personalMovieDB = {
     count : numberOfFilms, 
     movies : {
-
     },
 };
 
