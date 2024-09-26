@@ -20,12 +20,12 @@ for (let i = 0; i < 2; i++) {
             alert("Неверный ввод! Пожалуйста, введите название фильма (не более 50 символов).");
             continue; // Если ввод некорректен, возвращаем к запросу
         }
-        
+
         lastFilmRatingt = prompt("На сколько оцените его?");
         
-        // Проверка корректности оценки, если нужно
-        if (lastFilmRatingt === null  isNaN(lastFilmRatingt)  lastFilmRatingt.trim() === "") {
-            alert("Неверный ввод! Пожалуйста, введите числовую оценку.");
+        // Проверка корректности оценки
+        if (lastFilmRatingt === null  lastFilmRatingt.trim() === ""  isNaN(lastFilmRatingt)  lastFilmRatingt < 0  lastFilmRatingt > 10) {
+            alert("Неверный ввод! Пожалуйста, введите оценку от 0 до 10.");
             continue; // Если ввод некорректен, возвращаем к запросу
         }
 
