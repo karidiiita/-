@@ -1,5 +1,8 @@
 // 1. Создать переменную numberOfFilms и получить ответ от пользователя
 let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?");
+if (numberOfFilms == null  numberOfFilms.trim() == ""  isNaN(numberOfFilms)  numberOfFilms < 0  numberOfFilms > 10) {
+            alert("Неверный ввод!");
+            continue; // Если ввод некорректен, возвращаем к запросу
 
 // 2. Создать объект personalMovieDB
 const personalMovieDB = {
@@ -16,7 +19,7 @@ for (let i = 0; i < 2; i++) {
         lastSeenFilm = prompt("Один из последних просмотренных фильмов?");
         
         // 4. Проверка корректности названия фильма
-        if (lastSeenFilm === null  lastSeenFilm.trim() === ""  lastSeenFilm.length > 50) {
+        if (lastSeenFilm == null  lastSeenFilm.trim() == ""  lastSeenFilm.length > 50) {
             alert("Неверный ввод! Пожалуйста, введите название фильма (не более 50 символов).");
             continue; // Если ввод некорректен, возвращаем к запросу
         }
@@ -24,7 +27,7 @@ for (let i = 0; i < 2; i++) {
         lastFilmRatingt = prompt("На сколько оцените его?");
         
         // Проверка корректности оценки
-        if (lastFilmRatingt === null  lastFilmRatingt.trim() === ""  isNaN(lastFilmRatingt)  lastFilmRatingt < 0  lastFilmRatingt > 10) {
+        if (lastFilmRatingt == null  lastFilmRatingt.trim() == ""  isNaN(lastFilmRatingt)  lastFilmRatingt < 0  lastFilmRatingt > 10) {
             alert("Неверный ввод! Пожалуйста, введите оценку от 0 до 10.");
             continue; // Если ввод некорректен, возвращаем к запросу
         }
