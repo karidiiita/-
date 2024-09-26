@@ -1,25 +1,39 @@
+// 1. Создать переменную numberOfFilms и получить ответ от пользователя
+let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?");
 
-let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?');
-
-let personalMovieDB = {
+// 2. Создать объект personalMovieDB
+const personalMovieDB = {
     count: numberOfFilms,
     movies: {}
 };
 
-for(let i = 0; i < 1; i++)
-{
-    let lastMovie = prompt('Один из последних просмотренных фильмов?');
-    let movieRating = prompt('На сколько оцените его?');
+// 3. Задаем пользователю вопросы дважды
+for (let i = 0; i < 2; i++) {
+    let lastSeenFilm;
+    let lastFilmRatingt;
 
-  if(lastMovie != null && movieRating != null 
-    && lastMovie != '' && movieRating != '' 
-    && lastMovie.length < 50 )
-    {
-        personalMovieDB.movies[lastMovie] = movieRating;
-    }
-     else
-    {
-        i--
-    }
+    do {
+        lastSeenFilm = prompt("Один из последних просмотренных фильмов?");
+        
+        // 4. Проверка корректности названия фильма
+        if (lastSeenFilm === null  lastSeenFilm.trim() === ""  lastSeenFilm.length > 50) {
+            alert("Неверный ввод! Пожалуйста, введите название фильма (не более 50 символов).");
+            continue; // Если ввод некорректен, возвращаем к запросу
+        }
+        
+        lastFilmRatingt = prompt("На сколько оцените его?");
+        
+        // Проверка корректности оценки, если нужно
+        if (lastFilmRatingt === null  isNaN(lastFilmRatingt)  lastFilmRatingt.trim() === "") {
+            alert("Неверный ввод! Пожалуйста, введите числовую оценку.");
+            continue; // Если ввод некорректен, возвращаем к запросу
+        }
+
+        // 5. Записываем ответы в объект movies
+        personalMovieDB.movies[lastSeenFilm] = lastFilmRatingt;
+        break; // Выход из цикла, если всё прошло успешно
+    } while (true);
 }
+
+// 6. Выводим объект personalMovieDB в консоль
 console.log(personalMovieDB);
