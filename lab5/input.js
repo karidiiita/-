@@ -1,72 +1,142 @@
-let selectedElement = null;
-let originalPosition = null;
-let isDragging = false;
+const divs = document.querySelectorAll(".target")
 
-const targets = document.querySelectorAll(".target");
+if (divs.length) {
 
-targets.forEach((target) => {
-    target.addEventListener("mousedown", (e) => {
-       target.style.backgroundColor = "red";
-        if (e.button === 0) {
-            if (selectedElement === null) {
-                selectedElement = target;
-                originalPosition = {
-                    top: parseInt(target.style.top) || 0,
-                    left: parseInt(target.style.left) || 0,
-                    backgroundColor: target.style.backgroundColor,
-                };
-                isDragging = true;
-                target.style.zIndex = 1;
+    divs.forEach(div => {
+        let isMoving = false;
+        let isFixed = false;
+        let offsetX, offsetY;
+        let lastPosX = div.offsetLeft;
+        let lastPosY = div.offsetTop;
+
+        div.addEventListener('mousedown', (e) => {
+            isMoving = true;
+            offsetX = e.clientX - div.offsetLeft;
+            offsetY = e.clientY - div.offsetTop;
+
+            div.style.zIndex = 10;
+        })
+        div.addEventListener('dblclick', (e) => {
+            isFixed = true;
+            offsetX = e.clientX - div.offsetLeft;
+            offsetY = e.clientY - div.offsetTop;
+
+            div.style.backgroundColor = 'blue';
+            div.style.zIndex = 10;
+        })
+        div.addEventListener('mousemove', (e) => {
+            if (isMoving || isFixed) {
+                div.style.left = `${e.clientX - offsetX}px`;
+                div.style.top = `${e.clientY - offsetY}px`;
             }
-         
+        })
+        div.addEventListener('mouseup', (e) => {
+            isMoving = false;
+            div.style.zIndex = '';
+
+            lastPosX = div.offsetLeft;
+            lastPosY = div.offsetTop;
+        })
+
+        div.addEventListener('click', (e) => {
+            div.style.backgroundColor = 'red';
+            div.style.zIndex = '';
+            isFixed = false;
+            lastPosX = div.offsetLeft;
+            lastPosY = div.offsetTop;
+        })
+        document.addEventListener("keydown", (e) => {
+            if (e.code == "Escape") {
+                if (isFixed || isMoving) {
+                    isFixed = false;
+                    isMoving = false;
+
+                    div.style.backgroundColor = 'red';
+                    div.style.zIndex = '';
+
+                    div.style.left = lastPosX + 'px';
+                    div.style.top = lastPosY + 'px';
+                }
+            }
+        });
+
+
+        //Lab 6
+        let lastTouchTime = 0;
+        let isFollowing = false;
+        let followMode = false;
+
+        function handleDoubleTap() {
+            const now = new Date().getTime();
+            const timeSinceLastTouch = now - lastTouchTime;
+
+            if (timeSinceLastTouch > 0 && timeSinceLastTouch < 300) {
+                isFollowing = true;
+                setTimeout(()=> { followMode = true;}, 800)
+            }
+            lastTouchTime = now;
         }
-    });
 
-    target.addEventListener("dblclick", () => {
-        if (selectedElement === null) {
-            selectedElement = target;
-            originalPosition = {
-                top: parseInt(target.style.top) || 0,
-                left: parseInt(target.style.left) || 0,
-                backgroundColor: target.style.backgroundColor,
-            };
-            isDragging = true;
-            target.style.zIndex = 1;
-            target.style.backgroundColor = "blue";
-        } else {
-            selectedElement.style.zIndex = 0;
-            selectedElement = null;
-            isDragging = false;
-            target.style.backgroundColor = originalPosition.backgroundColor;
-        }
-    });
-});
+        div.addEventListener("touchstart", (e) => {
+            
+            handleDoubleTap();
 
-document.addEventListener("mousemove", (e) => {
-    if (isDragging && selectedElement) {
-        const newX = e.clientX - selectedElement.offsetWidth / 2;
-        const newY = e.clientY - selectedElement.offsetHeight / 2;
+            isMoving = true;
 
-        selectedElement.style.left = `${newX}px`;
-        selectedElement.style.top = `${newY}px`;
-    }
-});
+            let touch = e.touches[0];
+            offsetX = touch.clientX - div.offsetLeft;
+            offsetY = touch.clientY - div.offsetTop;
+            div.style.zIndex = 10;
+        })
+        div.addEventListener("touchmove", (e) => {
+            if (isMoving) {
+                let touch = e.touches[0];
+                div.style.left = `${touch.clientX - offsetX}px`;
+                div.style.top = `${touch.clientY - offsetY}px`;
+            }
+        })
+        div.addEventListener("touchend", (e) => {
+            isMoving = false;
+            div.style.zIndex = '';
 
-document.addEventListener("mouseup", (e) => {
-    if (selectedElement && isDragging) {
-        isDragging = false;
-        selectedElement.style.zIndex = 0;
-    }
-    selectedElement = null;
-});
+            lastPosX = div.offsetLeft;
+            lastPosY = div.offsetTop;
+        })
+        document.addEventListener("touchstart", (e) => {
+            if (e.touches.length > 1) {
+                isFollowing = false;
+                isMoving = false;
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && selectedElement) {
-        selectedElement.style.left = `${originalPosition.left}px`;
-        selectedElement.style.top = `${originalPosition.top}px`;
-        selectedElement.style.zIndex = 0;
-        selectedElement.style.backgroundColor = originalPosition.backgroundColor;
-        selectedElement = null;
-        isDragging = false;
-    }
-});
+                div.style.zIndex = '';
+
+                div.style.left = lastPosX + 'px';
+                div.style.top = lastPosY + 'px';
+                return;
+            }
+
+            if (isFollowing) {
+                let touch = e.touches[0];
+                div.style.left = `${touch.clientX - offsetX}px`;
+                div.style.top = `${touch.clientY - offsetY}px`;
+                div.style.zIndex = 10;
+            }
+        })
+        document.addEventListener("touchmove", (e)=>{
+            if(isFollowing){
+                let touch = e.touches[0];
+                div.style.left = `${touch.clientX - offsetX}px`;
+                div.style.top = `${touch.clientY - offsetY}px`;
+            }
+        })
+        document.addEventListener("touchend", (e) => {
+            if (isFollowing) {
+                let distance  = div.offsetLeft - lastPosX + div.offsetTop - lastPosY;
+                if(distance===0 && followMode){
+                    isFollowing = false;
+                    followMode = false;
+                }
+                div.style.zIndex = '';
+            }
+        })
+    })
+}
