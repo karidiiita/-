@@ -1,57 +1,42 @@
-const paper = document.querySelector(".paper");
-const cordinates = [];
-const svgns = "http://www.w3.org/2000/svg";
-const buttons = document.querySelectorAll("button");
-let currentFigure;
+const svgCanvas = document.getElementById('svgCanvas');
+let isDrawing = false;
+let startX, startY;
+let figure = null;
+let painting = null;
 
-let selectedFigure = "rect";
-
-function addFigure(e) {
-  const figure = document.createElementNS(svgns, selectedFigure);
-  cordinates[0] = e.clientY;
-  cordinates[1] = e.clientX;
-  figure.setAttribute("fill", "pink");
-  if (selectedFigure === "rect") {
-    figure.setAttribute("y", cordinates[0]);
-    figure.setAttribute("x", cordinates[1]);
-  } else {
-    figure.setAttribute("cy", cordinates[0]);
-    figure.setAttribute("cx", cordinates[1]);
-  }
-  paper.append(figure);
-  currentFigure = figure;
-  paper.addEventListener(
-    "mousemove",
-    selectedFigure === "rect" ? trackRectangleSize : trackCircleSize
-  );
-}
-
-function trackRectangleSize(e) {
-  const width = Math.abs(e.clientX - cordinates[1]);
-  const height = Math.abs(e.clientY - cordinates[0]);
-  const rect = currentFigure;
-  rect.setAttribute("width", width);
-  rect.setAttribute("height", height);
-  if (e.clientX - cordinates[1] < 0) rect.setAttribute("x", e.clientX);
-  if (e.clientY - cordinates[0] < 0) rect.setAttribute("y", e.clientY);
-}
-
-function trackCircleSize(e) {
-  const width = Math.abs(e.clientX - cordinates[1]) ** 2;
-  const height = Math.abs(e.clientY - cordinates[0]) ** 2;
-  const circle = currentFigure;
-  circle.setAttribute("r", Math.sqrt(width + height));
-}
-
-paper.addEventListener("mousedown", addFigure);
-paper.addEventListener("mouseup", () => {
-  cordinates.length = 0;
-  paper.removeEventListener(
-    "mousemove",
-    selectedFigure === "rect" ? trackRectangleSize : trackCircleSize
-  );
+svgCanvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    startX = e.offsetX;
+    startY = e.offsetY;
 });
-console.log(buttons);
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => (selectedFigure = e.target.id));
+
+svgCanvas.addEventListener('mousemove', (e) => {
+    if (!isDrawing) return;
+
+    const shapeType = document.querySelector('input[name="shape"]:checked').value;
+
+    if (shapeType === 'circle') {
+        const radius = Math.sqrt(Math.pow(e.offsetX - startX, 2) + Math.pow(e.offsetY - startY, 2));
+        figure = `<circle cx="${startX}" cy="${startY}" r="${radius}" fill="none" stroke="black"/>`;
+    } else {
+        const width = e.offsetX - startX;
+        const height = e.offsetY - startY;
+        const rectX = (width < 0) ? e.offsetX : startX;
+        const rectY = (height < 0) ? e.offsetY : startY;
+        const rectWidth = Math.abs(width);
+        const rectHeight = Math.abs(height);
+        figure = `<rect x="${rectX}" y="${rectY}" width="${rectWidth}" height="${rectHeight}" fill="none" stroke="black"/>`;
+    }
+    svgCanvas.innerHTML = painting + figure;
+
+});
+
+svgCanvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    painting += figure;
+});
+
+svgCanvas.addEventListener('mouseleave', () => {
+    isDrawing = false;
+    painting += figure;
 });
