@@ -5,7 +5,7 @@ const personalMovieDB ={
     movies: {}
 }
 let askAboutMovie =()=>{
-    let movieObject ={};
+    let movieObject ={}; 
     let movie =""; 
     let rate = "";
     
