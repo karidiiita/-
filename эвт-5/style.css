@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'BinnerDi.ttf';
+    src: url('fonts/BinnerDi.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Geisha.ttf';
+    src: url('fonts/Geisha.ttf') format('truetype');
+}
+
+@font-face {  
+    font-family: 'Jakobc.ttf';
+    src: url('fonts/Jakobc.ttf') format('truetype');
+}
+
+@font-face {  
+    font-family: 'karidiita.ttf';
+    src: url('fonts/karidiita.ttf') format('truetype');
+}
+
+.film11 {
+    font-family: 'Geisha.ttf'; /* Применяем шрифт для первого фильма */
+}
+
+.film12 {
+    font-family: 'BinnerDi.ttf'; /* Применяем шрифт для второго фильма */
+}
+
+.film13 {
+    font-family: 'Jakobc.ttf'; /* Применяем шрифт для третьего фильма */
+}
+#str{
+    font-weight: 600;
+}
+
+/* Общие стили */
+body {
+    background-color: #4a3f3f0c; /* Цвет фона */
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%; /* Заем высоту для фона */
+}
+
+.container {
+    max-width: 1440px; /* Максимальная ширина контента */
+    margin: 0 auto; /* Центрирование */
+    background-color: #986868b1; /* Цвет фона для контента */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавление тени для контейнера */
+    font-family: 'karidiita.ttf';
+}
+
+h1, h2, h3, h4 {
+    color: #333; /* Цвет заголовков */
+}
+
+/* Стиль для списка фильмов */
+ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: black; /* Устанавливаем черный цвет */
+}
+
+a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении (по желанию) */
+}
+
+/* Выравнивание текста для описаний фильмов */
+#film1 {
+    text-align: center; /* Центрируем текст для первого фильма */
+}
+
+#film2 {
+    text-align: right; /* Выравнивание по ширине для второго фильма */
+}
+
+#film3 {
+    text-align: left; /* Выравнивание по левому краю для третьего фильма */
+}
+
+#th {
+    font-weight: 600;
+}
+
+/* Стили для таблиц */
+table {
+    width: 100%; /* Ширина таблицы */
+    border-collapse: collapse; /* Убираем двойные границы */
+}
+
+td {
+    border: 1px solid #ccc; /* Граница ячеек */
+    padding: 10px; /* Внутренние отступы в ячейках */
+}
+
+img, video {
+    width: 400px; /* Устанавливаем общую ширину для всех изображений и видео */
+    height: 200px;
+    border-radius: 15px; /* Закругленные края */
+    object-fit: cover; /* Обрезаем изображение для заполнения заданного размера */
+   
+}
