@@ -18,6 +18,7 @@
     src: url('fonts/karidiita.ttf') format('truetype');
 }
 
+
 .film11 {
     font-family: 'Geisha.ttf'; 
 }
@@ -33,10 +34,10 @@
     font-family: 'karidiita.ttf';
 }
 
+
 #str{
     font-weight: 600;
 }
-
 
 body {
     background-color: #986868b1; 
@@ -68,6 +69,7 @@ a {
     text-decoration: none; /* Убираем подчеркивание */
     color: black; 
 }
+
 
 #film1 {
     text-align: center; 
