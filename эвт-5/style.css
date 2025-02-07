@@ -19,88 +19,82 @@
 }
 
 .film11 {
-    font-family: 'Geisha.ttf'; /* Применяем шрифт для первого фильма */
+    font-family: 'Geisha.ttf'; 
 }
 
 .film12 {
-    font-family: 'BinnerDi.ttf'; /* Применяем шрифт для второго фильма */
+    font-family: 'BinnerDi.ttf'; 
 }
 
 .film13 {
-    font-family: 'Jakobc.ttf'; /* Применяем шрифт для третьего фильма */
+    font-family: 'Jakobc.ttf'; 
 }
-
-/* Общие стили */
-body {
-    background-color: #4a3f3f0c; /* Цвет фона */
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    height: 100%; /* Заем высоту для фона */
-}
-
-.container {
-    max-width: 1440px; /* Максимальная ширина контента */
-    margin: 0 auto; /* Центрирование */
-    background-color: #986868b1; /* Цвет фона для контента */
-    padding: 20px; /* Внутренние отступы */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавление тени для контейнера */
+.karidiita{
     font-family: 'karidiita.ttf';
 }
 
-h1, h2, h3, h4 {
-    color: #333; /* Цвет заголовков */
+#str{
+    font-weight: 600;
 }
 
-/* Стиль для списка фильмов */
+
+body {
+    background-color: #986868b1; 
+    margin: 0;
+    padding: 0;/*от контента до границы*/
+}
+
+html, body {
+    height: 100%; 
+}
+
+.container {
+    max-width: 1440px; 
+    margin: 0 auto; /* центрирование */
+    padding: 20px; 
+}
+
+h1, h2, h3, h4 {
+    color: #333; 
+}
+
+
 ul {
     list-style-type: none; /* Убираем маркеры списка */
-    padding: 0; /* Убираем отступы */
+    padding: 0; 
 }
 
 a {
     text-decoration: none; /* Убираем подчеркивание */
-    color: black; /* Устанавливаем черный цвет */
+    color: black; 
 }
 
-a:hover {
-    text-decoration: underline; /* Подчеркивание при наведении (по желанию) */
-}
-
-/* Выравнивание текста для описаний фильмов */
 #film1 {
-    text-align: center; /* Центрируем текст для первого фильма */
+    text-align: center; 
 }
 
 #film2 {
-    text-align: right; /* Выравнивание по ширине для второго фильма */
+    text-align: right; 
 }
 
 #film3 {
-    text-align: left; /* Выравнивание по левому краю для третьего фильма */
+    text-align: left;
 }
 
-#th {
-    font-weight: 600;
-}
 
-/* Стили для таблиц */
 table {
-    width: 100%; /* Ширина таблицы */
-    border-collapse: collapse; /* Убираем двойные границы */
+    width: 100%; 
 }
 
 td {
-    border: 1px solid #ccc; /* Граница ячеек */
-    padding: 10px; /* Внутренние отступы в ячейках */
+    border: 1px solid #ccc; 
+    padding: 10px;
 }
 
 img, video {
-    width: 400px; /* Устанавливаем общую ширину для всех изображений и видео */
+    width: 400px; 
     height: 200px;
-    border-radius: 15px; /* Закругленные края */
+    border-radius: 15px; 
     object-fit: cover; /* Обрезаем изображение для заполнения заданного размера */
    
 }
