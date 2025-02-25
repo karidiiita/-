@@ -6,8 +6,8 @@ const gravity = 0.5; // Ускорение свободного падения
 const bounceFactor = 0.7; // Коэффициент упругости
 
 function animate() {
-    velocity += gravity; // Увеличиваем скорость
-    height -= velocity; // Уменьшаем высоту
+    velocity += gravity; 
+    height -= velocity;
     ball.style.bottom = `${Math.max(height, 0)}px`; // Ограничиваем высоту до 0
 
     // Проверка на столкновение с землей
@@ -20,10 +20,7 @@ function animate() {
         setTimeout(() => {
             ball.style.transform = 'scaleY(1)'; // Возвращаем к нормальному размеру
         }, 100); // Длительность эффекта трансформации (100 мс)
-    } else {
-        // Если мяч не на земле, оставляем нормальный размер
-        ball.style.transform = 'scaleY(1)'; // Убираем деформацию
-    }
+    } 
 
     // Продолжаем анимацию, если высота больше нуля или скорость значительная
     if (height > 0 || Math.abs(velocity) > 0.1) {
