@@ -6,27 +6,28 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Выровнять элементы по левому краю */
-  padding: 20px; /* Отступы */
+  align-items: flex-start;
+  padding: 20px;
 }
 
 header {
   background: rgb(52, 206, 142);
   height: 100px;
-  width: 100%; /* Занять полную ширину */
+  width: 100%;
+  display: flex;
+  align-items: center; /* Центрирование заголовка */
+  justify-content: center; /* Центрирование заголовка */
+  color: white;
 }
 
 h1 {
-  text-align: center;
-  color: white;
-  line-height: 100px;
   margin: 0;
 }
 
 .controls {
   display: flex;
-  flex-direction: column; /* Элементы вертикально */
-  align-items: flex-start; /* Выровнять элементы по левому краю */
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 button {
@@ -57,20 +58,21 @@ a::after {
 
 a:hover {
   color: green;
-}
 
-a:hover::after {
-  width: 100%;
-  left: 0;
+  /* Упрощение */
+  &::after {
+    width: 100%;
+    left: 0;
+  }
 }
 
 .container {
   position: relative;
   width: 100px;
-  height: 600px; /* Высота, с которой падает мячик */
+  height: 600px;
   border: 1px solid #333;
   overflow: hidden;
-  margin-top: 20px; /* Отступ сверху */
+  margin-top: 20px;
 }
 
 .ball {
@@ -79,19 +81,15 @@ a:hover::after {
   height: 50px;
   background-color: red;
   border-radius: 50%;
-  bottom: 100%; /* Начальная позиция выше контейнера */
+  bottom: 100%;
 }
 
-/* Анимация вибрации */
 @keyframes vibrate {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(5px); }
 }
 
-/* Стили при наведении на кнопку */
 button:hover {
   animation: none;
   background-color: green;
