@@ -1,37 +1,24 @@
 const ball = document.querySelector('.ball');
 const containerHeight = document.querySelector('.container').clientHeight;
-let height = 600; // Начальная высота
+let height = containerHeight; // Начальная высота по высоте контейнера
 let velocity = 0; // Начальная скорость
-let gravity = 0.5; // Ускорение свободного падения
-let bounceFactor = 0.7; // Коэффициент упругости
-let isFalling = true;
+const gravity = 0.5; // Ускорение свободного падения
+const bounceFactor = 0.7; // Коэффициент упругости
 
 function animate() {
-    if (isFalling) {
-        velocity += gravity; // Увеличиваем скорость за счет гравитации
-        height -= velocity; // Уменьшаем высоту
-        ball.style.bottom = `${height}px`;
+    velocity += gravity; // Увеличиваем скорость
+    height -= velocity; // Уменьшаем высоту
+    ball.style.bottom = `${Math.max(height, 0)}px`; // Ограничиваем высоту до 0
 
-        // Проверка на столкновение с землей
-        if (height <= 0) {
-            height = 0; // Устанавливаем высоту на ноль
-            velocity = -velocity * bounceFactor; // Отскакиваем
-        }
-    } else {
-        // Если мячик уже не падает, уменьшаем скорость до полного остановки
-        velocity *= 0.98; // Замедляем мячик
-        height -= velocity;
-        ball.style.bottom = `${height}px`;
-
-        if (height <= 0) {
-            height = 0;
-            velocity = 0; // Останавливаем мячик
-            isFalling = false; // Заканчиваем анимацию
-        }
+    // Проверка на столкновение с землей
+    if (height <= 0) {
+        height = 0; // Устанавливаем высоту на ноль
+        velocity = -velocity * bounceFactor; // Отскакиваем
     }
 
-    if (isFalling || Math.abs(velocity) > 0.1) {
-        requestAnimationFrame(animate); // Продолжаем анимацию
+    // Продолжаем анимацию, если высота больше нуля или скорость значительная
+    if (height > 0 || Math.abs(velocity) > 0.1) {
+        requestAnimationFrame(animate);
     }
 }
 
