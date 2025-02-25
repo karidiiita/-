@@ -1,0 +1,98 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Выровнять элементы по левому краю */
+  padding: 20px; /* Отступы */
+}
+
+header {
+  background: rgb(52, 206, 142);
+  height: 100px;
+  width: 100%; /* Занять полную ширину */
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  line-height: 100px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column; /* Элементы вертикально */
+  align-items: flex-start; /* Выровнять элементы по левому краю */
+}
+
+button {
+  margin: 20px 0;
+  font-size: 20px;
+  background-color: red;
+  animation: vibrate 0.1s infinite alternate;
+  transition: background-color 0.3s;
+}
+
+a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: green;
+  bottom: -2px;
+  left: 50%;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+a:hover {
+  color: green;
+}
+
+a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.container {
+  position: relative;
+  width: 100px;
+  height: 600px; /* Высота, с которой падает мячик */
+  border: 1px solid #333;
+  overflow: hidden;
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.ball {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+  bottom: 100%; /* Начальная позиция выше контейнера */
+}
+
+/* Анимация вибрации */
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(5px); }
+}
+
+/* Стили при наведении на кнопку */
+button:hover {
+  animation: none;
+  background-color: green;
+}
