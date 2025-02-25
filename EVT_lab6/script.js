@@ -14,12 +14,26 @@ function animate() {
     if (height <= 0) {
         height = 0; // Устанавливаем высоту на ноль
         velocity = -velocity * bounceFactor; // Отскакиваем
+        
+        // Эффект упругой деформации
+        ball.style.transform = 'scaleY(0.7)'; // Сплющиваем мяч
+        setTimeout(() => {
+            ball.style.transform = 'scaleY(1)'; // Возвращаем к нормальному размеру
+        }, 100); // Длительность эффекта трансформации (100 мс)
+    } else {
+        // Если мяч не на земле, оставляем нормальный размер
+        ball.style.transform = 'scaleY(1)'; // Убираем деформацию
     }
 
     // Продолжаем анимацию, если высота больше нуля или скорость значительная
     if (height > 0 || Math.abs(velocity) > 0.1) {
         requestAnimationFrame(animate);
+    } else {
+        // Устанавливаем мяч на землю и нормальный размер
+        ball.style.bottom = '0px'; // Убедимся, что мяч на земле
+        ball.style.transform = 'scaleY(1)'; // Устанавливаем нормальный размер
     }
 }
 
-animate(); // Запускаем анимацию
+// Запускаем анимацию
+animate();
