@@ -49,7 +49,8 @@ console.log(multiply(2, 4));  // Выведет 8
 
 ##
 
-![Пример картинки](![photo_5452021543149365318_y](https://github.com/user-attachments/assets/4511e0c2-25dc-4982-bb95-9d73b0552d51))
+![Пример картинки](https://github.com/user-attachments/assets/125da666-fb77-43ab-a485-9e2a7066112e)
+
 
 ## Список
 
